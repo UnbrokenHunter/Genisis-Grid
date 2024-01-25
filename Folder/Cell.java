@@ -1,7 +1,5 @@
 package Folder;
 
-import java.awt.Color;
-
 public class Cell {
     public static enum Type {
         MASS, ENERGY, EMPTY
@@ -9,7 +7,6 @@ public class Cell {
 
     private Type type;
     private int age; // Only relevant for MASS cells
-    private Color color;
 
     public Cell(Type type) {
         this.type = type;
@@ -41,14 +38,6 @@ public class Cell {
 
     public void incrementAge() {
         this.age++;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public Color getColor() {
-        return this.color;
     }
 
 }

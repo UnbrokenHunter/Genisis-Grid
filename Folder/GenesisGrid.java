@@ -158,7 +158,6 @@ public class GenesisGrid extends JFrame {
 
                 // Set new empty space to energy as well
                 newGrid[x][y].setType(Cell.Type.ENERGY);
-                newGrid[x][y].setColor(Color.YELLOW);
             }
         }
     }
@@ -187,13 +186,10 @@ public class GenesisGrid extends JFrame {
         }
     }
 
-    ColorInterpolator interp = new ColorInterpolator(ColorInterpolator.COOL_BLUES, 1);
-
     private void createMass(int x, int y, Cell[][] newGrid, Random rand) {
         // Check boundaries and empty spot in newGrid
         if (x >= 0 && x < Settings.GRID_SIZE && y >= 0 && y < Settings.GRID_SIZE) {
             newGrid[x][y].setType(Cell.Type.MASS);
-            newGrid[x][y].setColor(interp.getColor(newGrid[x][y].getAge()));
         }
 
     }
@@ -254,6 +250,8 @@ public class GenesisGrid extends JFrame {
         return massDirections;
     }
 
+    ColorInterpolator interp = new ColorInterpolator(ColorInterpolator.VIBRANT_TEALS, 4);
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -261,9 +259,9 @@ public class GenesisGrid extends JFrame {
         for (int i = 0; i < Settings.GRID_SIZE; i++) {
             for (int j = 0; j < Settings.GRID_SIZE; j++) {
                 if (Settings.grid[i][j].getType() == Cell.Type.MASS) {
-                    g.setColor(Settings.grid[i][j].getColor());
+                    g.setColor(interp.getColor(Settings.grid[i][j].getAge()));
                 } else if (Settings.grid[i][j].getType() == Cell.Type.ENERGY) {
-                    g.setColor(Settings.grid[i][j].getColor());
+                    g.setColor(new Color(234, 92, 21)); // Energy Color
                 } else {
                     g.setColor(Color.BLACK);
                 }
